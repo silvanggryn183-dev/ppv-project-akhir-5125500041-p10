@@ -110,8 +110,9 @@ daftar.addEventListener('click', (e) => {
 // Baca semua baris: yang valid dihitung, yang setengah diisi ditandai
 function bacaBaris() {
   const valid = [], bermasalah = [];
-  document.querySelectorAll('.matkul').forEach((baris) => {
-    const nama = baris.querySelector('.nama').value;
+ document.querySelectorAll('.matkul').forEach((baris) => {
+  baris.querySelectorAll('[aria-invalid]').forEach((el) => el.removeAttribute('aria-invalid'));
+  const nama = baris.querySelector('.nama').value;
     const sks = parseFloat(baris.querySelector('.sks').value);
     const nilai = parseFloat(baris.querySelector('.nilai').value);
     if (!nama && isNaN(sks) && isNaN(nilai)) return;
