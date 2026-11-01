@@ -11,7 +11,7 @@ function saring() {
   const kategori = filterKategori.value;
   return KARYA.filter((k) =>
     (kategori === 'semua' || k.kategori === kategori) &&
-    k.judul.includes(kata));
+     k.judul.toLowerCase().includes(kata.toLowerCase()));
 }
  
 function kartu(k) {
@@ -35,7 +35,8 @@ function kartu(k) {
 function tampil() {
   const hasil = saring();
   galeri.replaceChildren(...hasil.map(kartu));
-  jumlah.textContent = `Menampilkan ${KARYA.length} dari ${KARYA.length} karya`;
+  jumlah.textContent = `Menampilkan ${hasil.length} dari ${KARYA.length} karya`;
+  pasangDetail();
 }
  
 function pasangDetail() {
@@ -49,6 +50,5 @@ function pasangDetail() {
 }
  
 tampil();
-pasangDetail();
 cari.addEventListener('input', tampil);
-document.querySelector('#filter-kategori').addEventListener('change', tampil);
+filterKategori.addEventListener('change', tampil);
