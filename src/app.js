@@ -8,8 +8,10 @@ const judulTab = { kalkulator: 'Kalkulator IPK', riwayat: 'Riwayat IPK', tentang
 function pindahKe(id) {
   if (id === tampilan) return;
   tampilan = id;
-  document.querySelectorAll('.tab button').forEach((b) =>
-    b.toggleAttribute('aria-current', b.dataset.view === id));
+  document.querySelectorAll('.tab button').forEach((b) => {
+  if (b.dataset.view === id) b.setAttribute('aria-current', 'page');
+  else b.removeAttribute('aria-current');
+});
   document.querySelectorAll('.view').forEach((v) => {
     const aktif = v.id === id;
     if (aktif) {
